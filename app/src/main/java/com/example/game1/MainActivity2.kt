@@ -44,16 +44,19 @@ class MainActivity2 : AppCompatActivity() {
 
         val displayNumTextView = findViewById<TextView>(R.id.display_num)
 
+
         val submitButton = findViewById<Button>(R.id.submit_button)
 
         val restartButton = findViewById<Button>(R.id.restart_button)
+
+
 
         for (button in buttons) {
             button.setOnClickListener {
                 if (selections > 0) {
                     val number = button.text.toString().toInt()
                     total += number
-
+                    outputTextView.text = total.toString()
                     selections--
 
                     button.setBackgroundColor(Color.parseColor("#FF5733"))
@@ -80,7 +83,8 @@ class MainActivity2 : AppCompatActivity() {
             }
         }
 
-
+        val TotalValuNumbers = arrayOf(150, 20, 110, 130, 70, 60, 120, 40, 30, 10)
+        val Selected_numbers = arrayOf(10, 6, 9, 8, 7, 5, 2, 4, 3, 1)
 
         restartButton.setOnClickListener {
             // Reset total and selections
@@ -93,13 +97,31 @@ class MainActivity2 : AppCompatActivity() {
             // Enable all buttons
             for (button in buttons) {
                 button.isEnabled = true
-                button.setBackgroundColor(Color.TRANSPARENT) // Reset button color
+                button.setBackgroundColor(Color.parseColor("#4CAF50")) // Reset button color
             }
+
+            val randomIndex = (0 until TotalValuNumbers.size).random()
+
+            // Get the randomly selected number
+            val randomNumber = TotalValuNumbers[randomIndex]
+
+            // Set the text of displayNumTextView to the randomly selected number
+            displayNumTextView.text = randomNumber.toString()
+
+            // val randomIndex2 = (0 until TotalValuNumbers.size).random()
+
+            // Get the randomly selected number
+            //  val randomNumber2 = Selected_numbers[randomIndex2]
+
+            // Set the text of displayNumTextView to the randomly selected number
+            // selectNumTextView.text = randomNumber2.toString()
         }
+
+
+
 
     }
 }
-
 
 
 
