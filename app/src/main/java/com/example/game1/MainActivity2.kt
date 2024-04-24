@@ -72,11 +72,23 @@ class MainActivity2 : AppCompatActivity() {
 
                 Toast.makeText(this, "correct total value", Toast.LENGTH_SHORT).show()
 
-                // Save "win" text in SharedPreferences
-                val editor = sharedPreferences.edit()
+                // Retrieve existing "game_result" data
+                val existingData = sharedPreferences.getString("game_result", "")
+
+                // Create new game result entry with current date and time
                 val currentDateTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
-                val gameResult = "$currentDateTime - win"
-                editor.putString("game_result", gameResult)
+                val newGameResult = "$currentDateTime - win"
+
+                // Combine new data with existing data, separated by newline
+                val updatedGameResult = if (existingData.isNullOrEmpty()) {
+                    newGameResult
+                } else {
+                    "$newGameResult\n$existingData"
+                }
+
+                // Save updated game result data to SharedPreferences
+                val editor = sharedPreferences.edit()
+                editor.putString("game_result", updatedGameResult)
                 editor.apply()
 
             } else {
