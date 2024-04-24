@@ -1,6 +1,5 @@
 package com.example.game1
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -11,12 +10,14 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import android.os.CountDownTimer
-import kotlinx.coroutines.delay
+import android.content.Context
+import android.content.SharedPreferences
 
 
 class MainActivity2 : AppCompatActivity() {
 
     private var countDownTimer: CountDownTimer? = null
+    private lateinit var sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -26,6 +27,8 @@ class MainActivity2 : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        sharedPreferences = getSharedPreferences("GamePreferences", Context.MODE_PRIVATE)
 
         var total = 0;
 
@@ -65,6 +68,12 @@ class MainActivity2 : AppCompatActivity() {
             if (total == displayNumTextView.text.toString().toInt()) {
 
                 Toast.makeText(this, "correct total value", Toast.LENGTH_SHORT).show()
+
+                // Save "win" text in SharedPreferences
+                val editor = sharedPreferences.edit()
+                editor.putString("game_result", "win")
+                editor.apply()
+
             } else {
 
                 Toast.makeText(this, "Incorrect total value", Toast.LENGTH_SHORT).show()

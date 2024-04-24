@@ -21,6 +21,13 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
+        var scorebtn = findViewById<Button>(R.id.scorebtn)
+        scorebtn.setOnClickListener {
+            var intent = Intent(this,MainActivity3::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
