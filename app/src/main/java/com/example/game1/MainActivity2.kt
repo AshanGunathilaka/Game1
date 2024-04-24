@@ -50,27 +50,6 @@ class MainActivity2 : AppCompatActivity() {
         val restartButton = findViewById<Button>(R.id.restart_button)
 
 
-
-        for (button in buttons) {
-            button.setOnClickListener {
-                if (selections > 0) {
-                    val number = button.text.toString().toInt()
-                    total += number
-                    outputTextView.text = total.toString()
-                    selections--
-
-                    button.setBackgroundColor(Color.parseColor("#FF5733"))
-
-                    if (selections == 0) {
-
-                        for (btn in buttons) {
-                            btn.isEnabled = false
-                        }
-                    }
-                }
-            }
-        }
-
         submitButton.setOnClickListener {
 
             if (total == displayNumTextView.text.toString().toInt()) {
@@ -89,7 +68,6 @@ class MainActivity2 : AppCompatActivity() {
         restartButton.setOnClickListener {
             // Reset total and selections
             total = 0
-            selections = selectNumTextView.text.toString().toInt()
 
             // Reset output text view
             outputTextView.text = total.toString()
@@ -108,13 +86,37 @@ class MainActivity2 : AppCompatActivity() {
             // Set the text of displayNumTextView to the randomly selected number
             displayNumTextView.text = randomNumber.toString()
 
-            // val randomIndex2 = (0 until TotalValuNumbers.size).random()
+             val randomIndex2 = (0 until Selected_numbers.size).random()
 
             // Get the randomly selected number
-            //  val randomNumber2 = Selected_numbers[randomIndex2]
+              val randomNumber2 = Selected_numbers[randomIndex2]
 
             // Set the text of displayNumTextView to the randomly selected number
-            // selectNumTextView.text = randomNumber2.toString()
+             selectNumTextView.text = randomNumber2.toString()
+             selections = selectNumTextView.text.toString().toInt()
+        }
+
+
+
+        for (button in buttons) {
+            button.setOnClickListener {
+
+                if (selections > 0) {
+                    val number = button.text.toString().toInt()
+                    total += number
+                    outputTextView.text = total.toString()
+                    selections--
+
+                    button.setBackgroundColor(Color.parseColor("#FF5733"))
+
+                    if (selections == 0) {
+
+                        for (btn in buttons) {
+                            btn.isEnabled = false
+                        }
+                    }
+                }
+            }
         }
 
 
