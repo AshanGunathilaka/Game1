@@ -12,6 +12,9 @@ import android.widget.Toast
 import android.os.CountDownTimer
 import android.content.Context
 import android.content.SharedPreferences
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 class MainActivity2 : AppCompatActivity() {
@@ -71,7 +74,9 @@ class MainActivity2 : AppCompatActivity() {
 
                 // Save "win" text in SharedPreferences
                 val editor = sharedPreferences.edit()
-                editor.putString("game_result", "win")
+                val currentDateTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
+                val gameResult = "$currentDateTime - win"
+                editor.putString("game_result", gameResult)
                 editor.apply()
 
             } else {

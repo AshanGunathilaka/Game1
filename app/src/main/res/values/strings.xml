@@ -23,6 +23,7 @@
     <string name="restart_button">Restart</string>
 
     <string name="scorebtn">Score</string>
+    <string name="scorelist">Score List</string>
 
 
     <string name="total"></string>

@@ -8,6 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import android.content.Context
 import android.content.SharedPreferences
 import android.widget.Toast
+import android.widget.TextView
 
 class MainActivity3 : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
@@ -21,13 +22,15 @@ class MainActivity3 : AppCompatActivity() {
             insets
         }
         sharedPreferences = getSharedPreferences("GamePreferences", Context.MODE_PRIVATE)
+        val gameResultTextView = findViewById<TextView>(R.id.scorelist)
 
         // Check if "game_result" exists in SharedPreferences
         val gameResult = sharedPreferences.getString("game_result", "")
 
         // Check if "game_result" is not empty and display it
         if (!gameResult.isNullOrEmpty()) {
-            Toast.makeText(this, "Previous game result: $gameResult", Toast.LENGTH_SHORT).show()
+            gameResultTextView.text = "$gameResult"
+            //Toast.makeText(this, "Previous game result: $gameResult", Toast.LENGTH_SHORT).show()
             // Optionally, you can clear the "game_result" after reading it
 //            val editor = sharedPreferences.edit()
 //            editor.remove("game_result")
