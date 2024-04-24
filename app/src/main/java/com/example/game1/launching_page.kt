@@ -2,31 +2,26 @@ package com.example.game1
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
+import android.os.Handler
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class MainActivity : AppCompatActivity() {
+class launching_page : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        var startbtn = findViewById<Button>(R.id.start_game)
-        startbtn.setOnClickListener {
-            var intent = Intent(this,MainActivity2::class.java)
-            startActivity(intent)
-            finish()
-        }
+        val handler = Handler()
 
-        var scorebtn = findViewById<Button>(R.id.scorebtn)
-        scorebtn.setOnClickListener {
-            var intent = Intent(this,MainActivity3::class.java)
+        handler.postDelayed({
+
+            val intent = Intent(this, mainmenu::class.java)
             startActivity(intent)
             finish()
-        }
+        }, 2000)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

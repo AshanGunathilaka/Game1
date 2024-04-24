@@ -18,7 +18,7 @@ import java.util.Date
 import java.util.Locale
 
 
-class MainActivity2 : AppCompatActivity() {
+class game : AppCompatActivity() {
 
     private var countDownTimer: CountDownTimer? = null
     private lateinit var sharedPreferences: SharedPreferences
@@ -102,7 +102,7 @@ class MainActivity2 : AppCompatActivity() {
             // Stop the CountDownTimer
             countDownTimer?.cancel()
 
-            var intent = Intent(this,MainActivity::class.java)
+            var intent = Intent(this,mainmenu::class.java)
             startActivity(intent)
             finish()
 
@@ -152,7 +152,7 @@ class MainActivity2 : AppCompatActivity() {
 
                 override fun onFinish() {
                     // Timer finished, automatically click submitButton
-                    Toast.makeText(this@MainActivity2,"Time is over", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@game,"Time is over", Toast.LENGTH_SHORT).show()
                     submitButton.performClick()
                     restartButton.performClick()
 

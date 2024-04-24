@@ -6,11 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
-import android.widget.Toast
+import android.widget.Button
 import android.widget.TextView
 
-class MainActivity3 : AppCompatActivity() {
+class score_page : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +36,14 @@ class MainActivity3 : AppCompatActivity() {
 //            val editor = sharedPreferences.edit()
 //            editor.remove("game_result")
 //            editor.apply()
+        }
+
+        val backButton = findViewById<Button>(R.id.bck_button)
+        backButton.setOnClickListener {
+            var intent = Intent(this,mainmenu::class.java)
+            startActivity(intent)
+            finish()
+
         }
     }
 }

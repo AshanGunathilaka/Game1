@@ -13,7 +13,7 @@
     <string name="num_90">90</string>
     <string name="num_100">100</string>
 
-
+    <string name="game">Math game</string>
     <string name="display_num">100</string>
     <string name="select_num">2</string>
     <string name="timerTextView">Time Remaining: 10</string>
