@@ -1,5 +1,6 @@
 package com.example.game1
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -9,6 +10,8 @@ import androidx.core.view.WindowInsetsCompat
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import android.os.CountDownTimer
+
 
 class MainActivity2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +23,6 @@ class MainActivity2 : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
 
         var total = 0;
 
@@ -94,6 +96,19 @@ class MainActivity2 : AppCompatActivity() {
             // Set the text of displayNumTextView to the randomly selected number
              selectNumTextView.text = randomNumber2.toString()
              selections = selectNumTextView.text.toString().toInt()
+
+            // Start the countdown timer
+            object : CountDownTimer(10000, 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    // Timer is ticking down
+                }
+
+                override fun onFinish() {
+                    // Timer finished, automatically click submitButton
+                    submitButton.performClick()
+
+                }
+            }.start()
         }
 
 
