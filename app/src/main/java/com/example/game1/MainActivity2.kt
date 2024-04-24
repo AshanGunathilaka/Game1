@@ -11,9 +11,12 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import android.os.CountDownTimer
+import kotlinx.coroutines.delay
 
 
 class MainActivity2 : AppCompatActivity() {
+
+    private var countDownTimer: CountDownTimer? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -44,6 +47,8 @@ class MainActivity2 : AppCompatActivity() {
         var selections = selectNumTextView.text.toString().toInt()
         val outputTextView = findViewById<TextView>(R.id.total)
 
+        val timerTextView = findViewById<TextView>(R.id.timerTextView)
+
         val displayNumTextView = findViewById<TextView>(R.id.display_num)
 
 
@@ -53,6 +58,9 @@ class MainActivity2 : AppCompatActivity() {
 
 
         submitButton.setOnClickListener {
+
+            // Stop the CountDownTimer
+            countDownTimer?.cancel()
 
             if (total == displayNumTextView.text.toString().toInt()) {
 
@@ -68,6 +76,8 @@ class MainActivity2 : AppCompatActivity() {
         val Selected_numbers = arrayOf(10, 6, 9, 8, 7, 5, 2, 4, 3, 1)
 
         restartButton.setOnClickListener {
+            // Stop the CountDownTimer
+            countDownTimer?.cancel()
             // Reset total and selections
             total = 0
 
@@ -98,15 +108,17 @@ class MainActivity2 : AppCompatActivity() {
              selections = selectNumTextView.text.toString().toInt()
 
             // Start the countdown timer
-            object : CountDownTimer(10000, 1000) {
+            countDownTimer = object : CountDownTimer(10000, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
                     // Timer is ticking down
+                    timerTextView.text = "Time Remaining: ${millisUntilFinished / 1000}"
                 }
 
                 override fun onFinish() {
                     // Timer finished, automatically click submitButton
                     Toast.makeText(this@MainActivity2,"Time is over", Toast.LENGTH_SHORT).show()
                     submitButton.performClick()
+                    restartButton.performClick()
 
                 }
             }.start()
