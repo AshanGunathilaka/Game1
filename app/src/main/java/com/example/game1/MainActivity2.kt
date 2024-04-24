@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import android.os.CountDownTimer
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -35,6 +36,7 @@ class MainActivity2 : AppCompatActivity() {
 
         var total = 0;
 
+
         val buttons = listOf<Button>(
             findViewById(R.id.num_10),
             findViewById(R.id.num_20),
@@ -52,15 +54,11 @@ class MainActivity2 : AppCompatActivity() {
         val selectNumTextView = findViewById<TextView>(R.id.select_num)
         var selections = selectNumTextView.text.toString().toInt()
         val outputTextView = findViewById<TextView>(R.id.total)
-
         val timerTextView = findViewById<TextView>(R.id.timerTextView)
-
         val displayNumTextView = findViewById<TextView>(R.id.display_num)
-
-
         val submitButton = findViewById<Button>(R.id.submit_button)
-
         val restartButton = findViewById<Button>(R.id.restart_button)
+        val backButton = findViewById<Button>(R.id.bck_button)
 
 
         submitButton.setOnClickListener {
@@ -91,6 +89,8 @@ class MainActivity2 : AppCompatActivity() {
                 editor.putString("game_result", updatedGameResult)
                 editor.apply()
 
+                restartButton.performClick()
+
             } else {
 
                 Toast.makeText(this, "Incorrect total value", Toast.LENGTH_SHORT).show()
@@ -98,8 +98,18 @@ class MainActivity2 : AppCompatActivity() {
             }
         }
 
+        backButton.setOnClickListener {
+            // Stop the CountDownTimer
+            countDownTimer?.cancel()
+
+            var intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+            finish()
+
+        }
+
         val TotalValuNumbers = arrayOf(150, 20, 110, 130, 70, 60, 120, 40, 30, 10)
-        val Selected_numbers = arrayOf(10, 6, 9, 8, 7, 5, 2, 4, 3, 1)
+        val Selected_numbers = arrayOf(2, 4, 3)
 
         restartButton.setOnClickListener {
             // Stop the CountDownTimer
@@ -150,6 +160,7 @@ class MainActivity2 : AppCompatActivity() {
             }.start()
         }
 
+        restartButton.performClick()
 
 
         for (button in buttons) {

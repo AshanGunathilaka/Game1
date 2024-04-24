@@ -19,8 +19,8 @@
     <string name="timerTextView">Time Remaining: 10</string>
 
     <string name="submit_button">Submit</string>
-
     <string name="restart_button">Restart</string>
+    <string name="bck_button">Back</string>
 
     <string name="scorebtn">Score</string>
     <string name="scorelist">Score List</string>
