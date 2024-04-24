@@ -105,6 +105,7 @@ class MainActivity2 : AppCompatActivity() {
 
                 override fun onFinish() {
                     // Timer finished, automatically click submitButton
+                    Toast.makeText(this@MainActivity2,"Time is over", Toast.LENGTH_SHORT).show()
                     submitButton.performClick()
 
                 }
