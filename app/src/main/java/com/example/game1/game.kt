@@ -75,14 +75,20 @@ class game : AppCompatActivity() {
                 score++
                 scoreview.text = score.toString()
 
-                Toast.makeText(this, "correct total value", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Good..", Toast.LENGTH_SHORT).show()
+
+                restartButton.performClick()
+
+            } else {
+
+                Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT).show()
 
                 // Retrieve existing "game_result" data
                 val existingData = sharedPreferences.getString("game_result", "")
 
                 // Create new game result entry with current date and time
                 val currentDateTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
-                val newGameResult = "$currentDateTime - win"
+                val newGameResult = "$currentDateTime - Score $score"
 
                 // Combine new data with existing data, separated by newline
                 val updatedGameResult = if (existingData.isNullOrEmpty()) {
@@ -96,11 +102,6 @@ class game : AppCompatActivity() {
                 editor.putString("game_result", updatedGameResult)
                 editor.apply()
 
-                restartButton.performClick()
-
-            } else {
-
-                Toast.makeText(this, "Incorrect total value", Toast.LENGTH_SHORT).show()
                 //reset score
                 score = 0
                 scoreview.text = score.toString()
@@ -175,7 +176,6 @@ class game : AppCompatActivity() {
                     // Timer finished, automatically click submitButton
                     Toast.makeText(this@game,"Time is over", Toast.LENGTH_SHORT).show()
                     submitButton.performClick()
-                    restartButton.performClick()
 
                 }
             }.start()
