@@ -94,7 +94,17 @@ class game : AppCompatActivity() {
                 val updatedGameResult = if (existingData.isNullOrEmpty()) {
                     newGameResult
                 } else {
-                    "$newGameResult\n$existingData"
+                    // Split existing data into lines
+                    val lines = existingData.split("\n")
+                    // If the number of lines exceeds 10, remove the last line (oldest data)
+                    val updatedLines = if (lines.size >= 5) {
+                        lines.dropLast(1)
+                    } else {
+                        lines
+                    }
+                    // Combine updated lines with new data
+                    val updatedData = updatedLines.joinToString("\n")
+                    "$newGameResult\n$updatedData"
                 }
 
                 // Save updated game result data to SharedPreferences

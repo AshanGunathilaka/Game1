@@ -25,7 +25,8 @@
     <string name="bck_button">Back</string>
 
     <string name="scorebtn">Score</string>
-    <string name="scorelist">Score List</string>
+    <string name="scorelist">Empty</string>
+    <string name="scorelistt">Score List</string>
 
 
     <string name="total"></string>
