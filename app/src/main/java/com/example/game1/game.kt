@@ -110,6 +110,7 @@ class game : AppCompatActivity() {
 
         val TotalValuNumbers = arrayOf(150, 20, 110, 130, 70, 60, 120, 40, 30, 10)
         val Selected_numbers = arrayOf(2, 4, 3)
+        val Button_numbers = arrayOf(10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
 
         restartButton.setOnClickListener {
             // Stop the CountDownTimer
@@ -128,19 +129,8 @@ class game : AppCompatActivity() {
 
             val randomIndex = (0 until TotalValuNumbers.size).random()
 
-            // Shuffle the TotalValuNumbers array
-            TotalValuNumbers.shuffle()
-
-            // Shuffle the Selected_numbers array
-            Selected_numbers.shuffle()
-
             // Get the randomly selected number
             val randomNumber = TotalValuNumbers[randomIndex]
-
-            // Assign shuffled numbers to buttons
-            for ((index, button) in buttons.withIndex()) {
-                button.text = TotalValuNumbers[index].toString()
-            }
 
             // Set the text of displayNumTextView to the randomly selected number
             displayNumTextView.text = randomNumber.toString()
@@ -154,8 +144,16 @@ class game : AppCompatActivity() {
              selectNumTextView.text = randomNumber2.toString()
              selections = selectNumTextView.text.toString().toInt()
 
+            // Shuffle the Button_numbers array
+            Button_numbers.shuffle()
+
+            // Assign shuffled numbers to buttons
+            for ((index, button) in buttons.withIndex()) {
+                button.text = Button_numbers[index].toString()
+            }
+
             // Start the countdown timer
-            countDownTimer = object : CountDownTimer(10000, 1000) {
+            countDownTimer = object : CountDownTimer(21000, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
                     // Timer is ticking down
                     timerTextView.text = "Time Remaining: ${millisUntilFinished / 1000}"
