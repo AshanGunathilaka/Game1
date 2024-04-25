@@ -128,8 +128,19 @@ class game : AppCompatActivity() {
 
             val randomIndex = (0 until TotalValuNumbers.size).random()
 
+            // Shuffle the TotalValuNumbers array
+            TotalValuNumbers.shuffle()
+
+            // Shuffle the Selected_numbers array
+            Selected_numbers.shuffle()
+
             // Get the randomly selected number
             val randomNumber = TotalValuNumbers[randomIndex]
+
+            // Assign shuffled numbers to buttons
+            for ((index, button) in buttons.withIndex()) {
+                button.text = TotalValuNumbers[index].toString()
+            }
 
             // Set the text of displayNumTextView to the randomly selected number
             displayNumTextView.text = randomNumber.toString()
