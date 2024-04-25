@@ -26,7 +26,7 @@ class game : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main2)
+        setContentView(R.layout.game_activity)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -86,31 +86,34 @@ class game : AppCompatActivity() {
                 // Retrieve existing "game_result" data
                 val existingData = sharedPreferences.getString("game_result", "")
 
-                // Create new game result entry with current date and time
-                val currentDateTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
-                val newGameResult = "$currentDateTime - Score $score"
+                if (score != 0) {
+                    // Create new game result entry with current date and time
+                    val currentDateTime =
+                        SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
+                    val newGameResult = "$currentDateTime - Score $score"
 
-                // Combine new data with existing data, separated by newline
-                val updatedGameResult = if (existingData.isNullOrEmpty()) {
-                    newGameResult
-                } else {
-                    // Split existing data into lines
-                    val lines = existingData.split("\n")
-                    // If the number of lines exceeds 10, remove the last line (oldest data)
-                    val updatedLines = if (lines.size >= 5) {
-                        lines.dropLast(1)
+                    // Combine new data with existing data, separated by newline
+                    val updatedGameResult = if (existingData.isNullOrEmpty()) {
+                        newGameResult
                     } else {
-                        lines
+                        // Split existing data into lines
+                        val lines = existingData.split("\n")
+                        // If the number of lines exceeds 10, remove the last line (oldest data)
+                        val updatedLines = if (lines.size >= 5) {
+                            lines.dropLast(1)
+                        } else {
+                            lines
+                        }
+                        // Combine updated lines with new data
+                        val updatedData = updatedLines.joinToString("\n")
+                        "$newGameResult\n$updatedData"
                     }
-                    // Combine updated lines with new data
-                    val updatedData = updatedLines.joinToString("\n")
-                    "$newGameResult\n$updatedData"
-                }
 
-                // Save updated game result data to SharedPreferences
-                val editor = sharedPreferences.edit()
-                editor.putString("game_result", updatedGameResult)
-                editor.apply()
+                    // Save updated game result data to SharedPreferences
+                    val editor = sharedPreferences.edit()
+                    editor.putString("game_result", updatedGameResult)
+                    editor.apply()
+                }
 
                 //reset score
                 score = 0

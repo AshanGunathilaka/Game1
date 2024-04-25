@@ -12,7 +12,7 @@ class mainmenu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main4)
+        setContentView(R.layout.mainmenu_activity)
 
         var startbtn = findViewById<Button>(R.id.start_game)
         startbtn.setOnClickListener {
