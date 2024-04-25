@@ -22,6 +22,7 @@ class game : AppCompatActivity() {
 
     private var countDownTimer: CountDownTimer? = null
     private lateinit var sharedPreferences: SharedPreferences
+    private var score = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -56,10 +57,12 @@ class game : AppCompatActivity() {
         val outputTextView = findViewById<TextView>(R.id.total)
         val timerTextView = findViewById<TextView>(R.id.timerTextView)
         val displayNumTextView = findViewById<TextView>(R.id.display_num)
+        val scoreview = findViewById<TextView>(R.id.Scorevalue)
         val submitButton = findViewById<Button>(R.id.submit_button)
         val restartButton = findViewById<Button>(R.id.restart_button)
         val backButton = findViewById<Button>(R.id.bck_button)
 
+                
 
         submitButton.setOnClickListener {
 
@@ -67,6 +70,10 @@ class game : AppCompatActivity() {
             countDownTimer?.cancel()
 
             if (total == displayNumTextView.text.toString().toInt()) {
+
+                //count score
+                score++
+                scoreview.text = score.toString()
 
                 Toast.makeText(this, "correct total value", Toast.LENGTH_SHORT).show()
 
@@ -94,6 +101,9 @@ class game : AppCompatActivity() {
             } else {
 
                 Toast.makeText(this, "Incorrect total value", Toast.LENGTH_SHORT).show()
+                //reset score
+                score = 0
+                scoreview.text = score.toString()
 
             }
         }
@@ -101,6 +111,8 @@ class game : AppCompatActivity() {
         backButton.setOnClickListener {
             // Stop the CountDownTimer
             countDownTimer?.cancel()
+
+
 
             var intent = Intent(this,mainmenu::class.java)
             startActivity(intent)
@@ -118,7 +130,7 @@ class game : AppCompatActivity() {
             // Reset total and selections
             total = 0
 
-            // Reset output text view
+           // Reset output text view
             outputTextView.text = total.toString()
 
             // Enable all buttons
