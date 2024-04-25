@@ -17,6 +17,8 @@
     <string name="display_num">100</string>
     <string name="select_num">2</string>
     <string name="timerTextView">Time Remaining: 10</string>
+    <string name="Score">Score</string>
+    <string name="Scorevalue">0</string>
 
     <string name="submit_button">Submit</string>
     <string name="restart_button">Restart</string>
